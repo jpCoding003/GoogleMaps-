@@ -22,13 +22,5 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-//
-//
-//        if (isLocationPermissionGranted()){
-//            Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
-//            enableUserLocation()
-//        }else{
-//            Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
-//        }
     }
 }
