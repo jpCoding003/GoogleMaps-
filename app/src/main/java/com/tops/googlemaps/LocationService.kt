@@ -32,20 +32,13 @@ class LocationService : Service() {
                 for (location: Location in result.locations){
                     Log.i("Locations","Long: ${location.longitude}  & Latit: ${location.latitude}")
 
-
                     val intent = Intent(ACTION_LOCATION_UPDATE)
                     intent.putExtra("latitude", location.latitude)
                     intent.putExtra("longitude", location.longitude)
                     sendBroadcast(intent)
-
-//                    val intent = Intent("LOCATION_UPDATE")
-//                    intent.putExtra("latitude", location.latitude)
-//                    intent.putExtra("longitude", location.longitude)
-//                    sendBroadcast(intent)
                 }
             }
         }
-
         startLocation()
 
     }

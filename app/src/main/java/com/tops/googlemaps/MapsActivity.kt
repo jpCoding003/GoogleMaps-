@@ -2,6 +2,7 @@ package com.tops.googlemaps
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -21,8 +22,6 @@ import com.tops.googlemaps.databinding.ActivityMapsBinding
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
-
-
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -31,6 +30,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.btnCurrentLocation.setOnClickListener {
+            val serviceIntent = Intent(this, LocationService::class.java)
+            startService(serviceIntent)
+
+            val intent = Intent(this,CurrentLocationActivity::class.java)
+            startActivity(intent)
+        }
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -59,7 +66,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             enableUserLocation()
         }
 
-
     }
 
 
@@ -77,7 +83,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
-        }
+    }
 
     @SuppressLint("MissingPermission")
     private fun enableUserLocation() {
