@@ -114,7 +114,9 @@ class CurrentLocationActivity : AppCompatActivity(), OnMapReadyCallback {
         val filter = IntentFilter(ACTION_LOCATION_UPDATE)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            registerReceiver(locationReceiver, filter, RECEIVER_NOT_EXPORTED)
+            registerReceiver(locationReceiver, filter, RECEIVER_EXPORTED)
+            val serviceIntent = Intent(this, LocationService::class.java)
+            startService(serviceIntent)
         } else {
             ContextCompat.registerReceiver(applicationContext,locationReceiver,filter,
                 ContextCompat.RECEIVER_VISIBLE_TO_INSTANT_APPS)

@@ -32,8 +32,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(binding.root)
 
         binding.btnCurrentLocation.setOnClickListener {
-            val serviceIntent = Intent(this, LocationService::class.java)
-            startService(serviceIntent)
+
 
             val intent = Intent(this,CurrentLocationActivity::class.java)
             startActivity(intent)
